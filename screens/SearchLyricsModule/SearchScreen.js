@@ -7,34 +7,15 @@ import {searchGenius} from "../../utils/SearchLyricsModule/GeniusApi";
 export const SearchScreen = ({ navigation }) => {
 
   const [isLoading, setLoading] = useState(false);
-  const [songs, setSongs] = useState([
-    {
-      songName: 'Monster',
-      artistName: 'Skillet',
-      lyrics: '',
-      id: '15373'
-    },
-    {
-      songName: 'M.I.N.E.',
-      artistName: 'Five Finger Death Punch',
-      lyrics: '',
-      id: '27886'
-    },
-    {
-      songName: 'Summertime Sadness',
-      artistName: 'Lana Del Rey',
-      lyrics: '',
-      id: '1324'
-    }
-  ])
+  const [songs, setSongs] = useState([])
 
   const pressLyrics = (song) => {
-    console.log(song);
+    //console.log(song);
     navigation.navigate('Lyrics', song)
   }
 
   const onSearchButtonPressed = (query) => {
-    console.log("pressed")
+    //console.log("pressed")
     setLoading(true)
     searchGenius(query).then(songsList => {
       setLoading(false)
@@ -48,7 +29,7 @@ export const SearchScreen = ({ navigation }) => {
     }}>
       <View style={styles.container}>
         <SearchView onSearchButtonPressed={onSearchButtonPressed}/>
-        {isLoading ? <ActivityIndicator/> : (
+        {isLoading ? <ActivityIndicator style={styles.loadSongs} size={'large'}/> : (
           <SongList
             data={songs}
             pressHandler={pressLyrics}
@@ -65,5 +46,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
+  },
+  loadSongs: {
+    flex: 1,
+    backgroundColor: '#ccc'
   }
 });

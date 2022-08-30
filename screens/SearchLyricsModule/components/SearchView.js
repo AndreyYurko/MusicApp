@@ -6,7 +6,7 @@ export const SearchView = ({ onSearchButtonPressed }) => {
 
   const onChangeQuery = (text) => {
     setQuery(text)
-    console.log(text)
+    //console.log(text)
   }
 
   const onPressHandler = () => {
